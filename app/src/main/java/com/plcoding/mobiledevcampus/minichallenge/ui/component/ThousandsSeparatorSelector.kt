@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -33,11 +34,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.plcoding.mobiledevcampus.minichallenge.R
 import com.plcoding.mobiledevcampus.minichallenge.domain.ThousandSeparator
+import com.plcoding.mobiledevcampus.minichallenge.ui.theme.ThousandsSeparatorPickerTheme
 import kotlinx.collections.immutable.ImmutableSet
+import kotlinx.collections.immutable.persistentSetOf
+
 
 @Composable
 internal fun ThousandsSeparatorSelector(
@@ -165,5 +170,28 @@ private fun RowScope.SelectorOption(
             else MaterialTheme.colorScheme.onPrimary.copy(alpha = 7.0f),
             modifier = Modifier.scale(animatedTextScale)
         )
+    }
+}
+
+@Preview
+@Composable
+private fun ThousandSeparatorSelectorPreview() {
+    val thousandSeparatorOptions = persistentSetOf(
+        ThousandSeparator("1.000"),
+        ThousandSeparator("1,000"),
+        ThousandSeparator("1 000"),
+    )
+    val selectedThousandSeparator = thousandSeparatorOptions.last()
+
+    ThousandsSeparatorPickerTheme(
+        dynamicColor = false
+    ) {
+        Surface {
+            ThousandsSeparatorSelector(
+                options = thousandSeparatorOptions,
+                selectedOption = selectedThousandSeparator,
+                onOptionSelected = {},
+            )
+        }
     }
 }
