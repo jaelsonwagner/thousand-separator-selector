@@ -1,5 +1,6 @@
 package com.plcoding.mobiledevcampus.minichallenge.ui.component
 
+import androidx.annotation.FloatRange
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
@@ -140,7 +141,7 @@ private fun RowScope.SelectorOption(
     isOptionSelected: Boolean,
     onOptionSelected: (ThousandSeparator) -> Unit,
     modifier: Modifier = Modifier,
-    selectedOptionTextScale: Float = 1.2f // Increase text size for selected option
+    @FloatRange(from = 0.0, to = 2.0) selectedOptionTextScale: Float = 1.2f
 ) {
     Box(
         modifier = modifier
