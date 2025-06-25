@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">thousands-separator-picker</string>
+    <string name="thousands_separator">Thousands separator</string>
+</resources>
